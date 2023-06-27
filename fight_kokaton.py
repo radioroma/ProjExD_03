@@ -27,7 +27,6 @@ class Bird:
     """
     ゲームキャラクター（こうかとん）に関するクラス
     """
-    #aaaaaaaaaaaaaaaaaaaaaaaaS
     delta = {  # 押下キーと移動量の辞書
         pg.K_UP: (0, -5),
         pg.K_DOWN: (0, +5),
