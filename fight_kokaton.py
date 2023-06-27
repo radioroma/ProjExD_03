@@ -95,7 +95,6 @@ class Bomb:
         引数1 color：爆弾円の色タプル
         引数2 rad：爆弾円の半径
         """
-        
         self.img = pg.Surface((2*rad, 2*rad))
         pg.draw.circle(self.img, color, (rad, rad), rad)
         self.img.set_colorkey((0, 0, 0))
@@ -117,22 +116,22 @@ class Bomb:
         screen.blit(self.img, self.rct)
 
 
-class Explosion(pg.sprite.Sprite):
+class Explosion():
     """
     爆発に関するクラス
     """
-    def __init__(self, obj: "Bomb|Enemy", life: int):
+    def __init__(self):
         """
         爆弾が爆発するエフェクトを生成する
         引数1 obj：爆発するBombまたは敵機インスタンス
         引数2 life：爆発時間
         """
         super().__init__()
-        img = pg.image.load("ex04/fig/explosion.gif")
+        img = pg.image.load("ex03/fig/explosion.gif")
         self.imgs = [img, pg.transform.flip(img, 1, 1)]
         self.image = self.imgs[0]
-        self.rect = self.image.get_rect(center=obj.rect.center)
-        self.life = life
+        self.rect = self.image.get_rect(center=xy.rect.center)
+    print(help.__init__)  
 
     def update(self):
         """
@@ -143,6 +142,7 @@ class Explosion(pg.sprite.Sprite):
         self.image = self.imgs[self.life//10%2]
         if self.life < 0:
             self.kill()
+    print(help.update) 
 
 
 
@@ -200,7 +200,8 @@ def main():
         
         for i, bomb in enumerate(bombs):
             if beam is not None:
-                if bomb.rct.colliderect(beam.rct):
+                if bomb.rct.colliderect(beam.rct): 
+                # こうかとんの体からビームが出る  
                     bombs[i] = None
                     beam = None
                     bird.change_img(6, screen)
